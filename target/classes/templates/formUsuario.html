@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sistema de Gestão de Frutas</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+	<h1>Formulário de Cadastro de Usuários</h1>
+	<form action="#" class="form form-control" th:action="@{/salvarUsuario}" method="post" th:object="${usuario}">
+		<fieldset>
+			<legend>Usuarios</legend>
+			<label class="col-sm-6 col-form-label">Empresa</label>
+			<select th:field="*{empresaId}" class="form-control"  th:required="required"> 
+				<option value="" selected>Selecione...</option>
+				<option th:each="emp : ${listaEmpresas}" th:value="${emp.id}" th:text="${emp.nome}">
+			</select>
+			
+			<label  class="col-sm-6 col-form-label">Nivel Acesso</label>
+			<select th:field="*{nivelAcessoId}" class="form-control"  th:required="required">
+				<option value="" selected>Selecione...</option>
+				<option th:each="nivelAcesso : ${listaNivelAcesso}" th:value="${nivelAcesso.id}" th:text="${nivelAcesso.nome}" >
+			</select>
+		
+			<label  class="col-sm-6 col-form-label">Nome</label>
+			<input type="text" class="form-control" th:field="*{nome}" th:required="required" />
+			
+			<div class="row g-3">
+  			<div class="col-sm-4">
+			<label  class="col-sm col-form-label">Conta</label>
+			<input type="text" class="form-control form control-sm" th:field="*{conta}" th:required="required" />
+		
+			<label  class="col-sm col-form-label">Senha</label>
+			<input type="password" class="form-control form control-sm" th:field="*{senha}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">Telefone</label>
+			<input type="text" class="form-control form control-sm" th:field="*{telefone}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">Email</label>
+			<input type="email" class="form-control form control-sm" th:field="*{email}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">RG</label>
+			<input type="text" class="form-control form control-sm" th:field="*{rg}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">CPF</label>
+			<input type="text" class="form-control form control-sm" th:field="*{cpf}" th:required="required" />
+			
+			<label class="col-sm-3 col-form-label">Data de Nascimento</label>
+			<input type="date" class="form-control" th:field="*{dataNascimento}" th:required="required" />
+			</div>
+  			</div>
+
+			<input type="hidden" th:field="*{id}" th:value="${usuario.id}">
+			
+			<button type="submit">Cadastrar</button>    
+		</fieldset>
+	</form>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

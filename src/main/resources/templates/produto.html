@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Sistema de Gestão de Frutas</h1>
+    <h2>Sistema de Controle de Produtos</h2>
+    <div class="form-control">
+    <a href="cadastroProduto"class="btn btn-info">Novo Produto</a>
+    </div> 
+    <table class="table table-striped">
+    	<thead>
+    		<tr>
+    			<td>Código</td>
+    			<td>Empresa</td>
+    			<td>Fornecedor</td>
+    			<td>Nome/Descrição do Produto</td>
+    			<td>Unidade</td>
+    			<td>Quantidade</td>
+    			<td>Preço</td>
+    			<td>Opções</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr th:each="for : ${listaProdutos}">
+    			<td th:text="${for.id}"></td>
+    			<td th:text="${for.empresaId}"></td>
+    			<td th:text="${for.fornecedorId}"></td>
+    			<td th:text="${for.nome}"></td>
+    			<td th:text="${for.unidade}"></td>
+    			<td th:text="${for.quantidade}"></td>
+    			<td th:text="${for.preco}"></td>
+    			<td>
+          			<a th:href="@{/editarProduto/{id}(id=${for.id})}"class="btn btn-info">Edit</a>
+          			<a th:href="@{/deletarProduto/{id}(id=${for.id})}"class="btn btn-danger">Del</a>
+          		</td>
+    		</tr>
+    	</tbody>
+    </table>
+    			
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

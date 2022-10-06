@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sistema de Gestão de Frutas</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+	<h1>Formulário de Cadastro de Vendas</h1>
+	<form action="#" class="form form-control" th:action="@{/salvarVendas}" method="post" th:object="${compras}">
+		<fieldset>
+			<legend>Vendas</legend>
+			<label class="col-sm-6 col-form-label">Cliente</label>
+			<select th:field="*{clienteId}" class="form-control"  th:required="required"> 
+				<option value="" selected>Selecione...</option>
+				<option th:each="cliente : ${listaCliente}" th:value="${cliente.id}" th:text="${cliente.nome}">
+			</select>
+			
+			<label  class="col-sm-6 col-form-label">Produto</label>
+			<select th:field="*{produtosId}" class="form-control"  th:required="required">
+				<option value="" selected>Selecione...</option>
+				<option th:each="produto : ${listaProdutos}" th:value="${produto.id}" th:text="${produto.nome}" >
+			</select>
+			
+			<div class="row g-3">
+  			<div class="col-sm-4">
+			<label  class="col-sm col-form-label">Quantidade</label>
+			<input type="number" class="form-control form control-sm" th:field="*{quantidade}" th:required="required" />
+		
+			<label  class="col-sm col-form-label">Valor Unitário</label>
+			<input type="number"  step="0.01" name="quantity" min="0.01" class="form-control form control-sm" th:field="*{valorUnitario}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">Forma de Pagamento</label>
+			<input type="text" class="form-control form control-sm" th:field="*{formaPagamento}" th:required="required" />
+			
+			<label  class="col-sm col-form-label">Data da Compra</label>
+			<input type="date" class="form-control form control-sm" th:field="*{dataCompra}" th:required="required" />
+			
+			</div>
+  			</div>
+
+			<input type="hidden" th:field="*{id}" th:value="${vendas.id}">
+			
+			<button type="submit">Cadastrar</button>    
+		</fieldset>
+	</form>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
